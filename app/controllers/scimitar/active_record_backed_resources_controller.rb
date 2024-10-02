@@ -69,7 +69,7 @@ module Scimitar
     def create(&block)
       super do |scim_resource|
         self.storage_class().transaction do
-          record = self.storage_class().new
+          record = self.storage_scope().new
           record.from_scim!(scim_hash: scim_resource.as_json())
           self.save!(record, &block)
           record_to_scim(record)
